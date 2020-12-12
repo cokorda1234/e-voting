@@ -75,7 +75,7 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" style="color: white" href="/welcome">Home</a>
+                                <a class="nav-link" style="color: white" href="/">Home</a>
                             </li>
 
                             <li class="nav-item">
