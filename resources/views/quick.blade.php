@@ -8,39 +8,29 @@
         <h1 align="center">Quick count Kandidat</h1>
 
         <div style="display: flex;margin-top: 70px;justify-content: center">
+            @foreach($kandidat as $kandidat)
             <div class="card border-primary" style="width: 18rem ; margin-right: 50px">
                 <img src="{{asset('img/avatar.svg')}}" style="width: 65%;margin: 0 auto ; margin-top: 50px" class="card-img-top" alt="...">
                 <hr>
                 <div class="card-body">
-                    <p class="card-text"> No urut : 1</p>
-                    <p class="card-text"> Visi : xxx</p>
-                    <p class="card-text"> Misi : xxx</p>
-
-
-                </div>
-                <div class="card-footer">
-                    <p> Hasil Suara {{count($satu)}}</p>
-                </div>
-            </div>
-            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-
-
-            <div class="card border-primary" style="width: 18rem">
-                <img src="{{asset('img/avatar.svg')}}" style="width: 65%;margin: 0 auto ; margin-top: 50px" class="card-img-top" alt="...">
-                <hr>
-                <div class="card-body">
-                    <p class="card-text"> No urut : 2</p>
-                    <p class="card-text"> Visi : xxx</p>
-                    <p class="card-text"> Misi : xxx</p>
-
+                    <p class="card-text"> No urut : {{$kandidat->id}}</p>
+                    <p class="card-text"> Nama : {{$kandidat->nama}}</p>
+                    <p class="card-text"> Visi : {{$kandidat->visi}}</p>
+                    <p class="card-text"> Misi : {{$kandidat->misi}}</p>
 
                 </div>
                 <div class="card-footer">
-                    <p> Hasil Suara {{count($dua)}}</p>
+{{--                    <p> Hasil Suara {{count($satu)}}</p>--}}
                 </div>
             </div>
+
+            @endforeach
+
+
 
         </div>
+        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
     </div>
 
 
@@ -52,41 +42,41 @@
 
 
 @push('script')
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-<script>
-    window.onload = function() {
+{{--    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>--}}
+{{--<script>--}}
+{{--    window.onload = function() {--}}
 
-        var cand1 = 0;
-        var cand2 = 0;
+{{--        var cand1 = 0;--}}
+{{--        var cand2 = 0;--}}
 
-        @if(count($satu) != 0 )
-            cand1 = {{count($satu)}};
-        @endif
-
-
-            @if(count($dua) != 0 )
-            cand2 = {{count($dua)}};
-            @endif
+{{--        @if(count($satu) != 0 )--}}
+{{--            cand1 = {{count($satu)}};--}}
+{{--        @endif--}}
 
 
-        var chart = new CanvasJS.Chart("chartContainer", {
-            animationEnabled: true,
-            title: {
-                text: "Quick Count"
-            },
-            data: [{
-                type: "pie",
-                startAngle: 120,
-                indexLabel: "{label} {y}",
-                dataPoints: [
-                    {y: cand1, label: "Kandidat 1 : "},
-                    {y: cand2, label: "Kandidat 2 : "},
+{{--            @if(count($dua) != 0 )--}}
+{{--            cand2 = {{count($dua)}};--}}
+{{--            @endif--}}
 
-                ]
-            }]
-        });
-        chart.render();
 
-    }
-</script>
+{{--        var chart = new CanvasJS.Chart("chartContainer", {--}}
+{{--            animationEnabled: true,--}}
+{{--            title: {--}}
+{{--                text: "Quick Count"--}}
+{{--            },--}}
+{{--            data: [{--}}
+{{--                type: "pie",--}}
+{{--                startAngle: 120,--}}
+{{--                indexLabel: "{label} {y}",--}}
+{{--                dataPoints: [--}}
+{{--                    {y: cand1, label: "Kandidat 1 : "},--}}
+{{--                    {y: cand2, label: "Kandidat 2 : "},--}}
+
+{{--                ]--}}
+{{--            }]--}}
+{{--        });--}}
+{{--        chart.render();--}}
+
+{{--    }--}}
+{{--</script>--}}
 @endpush

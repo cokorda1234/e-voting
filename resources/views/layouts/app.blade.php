@@ -55,8 +55,21 @@
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" style="color: white" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <div class="btn-group" style="margin: 1px">
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Register
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li> <a class="nav-link" style="color: black" href="{{ route('register') }}">{{ __('Register') }}</a> </li>
+                                            <li> <a class="nav-link" style="color: black" href="/registercan">Register Candidate</a> </li>
+                                        </ul>
+                                    </div>
+
                                 </li>
+
+{{--                                <li class="nav-item">--}}
+{{--                                    <a class="nav-link" style="color: white" href="{{ route('register') }}">{{ __('Register') }}</a>--}}
+{{--                                </li>--}}
                             @endif
 
                             @if (Route::has('login'))
@@ -68,6 +81,7 @@
                                         <ul class="dropdown-menu">
                                             <li> <a class="dropdown-item" href="{{ route('login') }}">Login as Voter</a> </li>
                                             <li> <a class="dropdown-item" href="{{ route('login') }}">Login as Admin</a> </li>
+                                            <li> <a class="dropdown-item" href="{{ route('login') }}">Login as Candidate</a> </li>
                                         </ul>
                                     </div>
 

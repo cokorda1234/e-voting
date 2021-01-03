@@ -15,8 +15,9 @@ class Vote extends Migration
     {
         Schema::create('vote', function (Blueprint $blueprint) {
             $blueprint->bigIncrements('id');
-            $blueprint->integer('vote_kandidat');
+            $blueprint->unsignedBigInteger('kandidat_id');
             $blueprint->unsignedBigInteger('user_id');
+            $blueprint->foreign('kandidat_id')->references('id')->on('kandidat')->onDelete('cascade');
             $blueprint->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

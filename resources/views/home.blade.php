@@ -10,39 +10,26 @@
         <h1 align="center">Daftar Kandidat</h1>
 
             <div style="display: flex;margin-top: 70px;justify-content: center">
+                @foreach($kandidat as $kandidat)
                 <div class="card border-primary" style="width: 18rem ; margin-right: 50px">
                     <img src="{{asset('img/avatar.svg')}}" style="width: 65%;margin: 0 auto ; margin-top: 50px" class="card-img-top" alt="...">
                     <hr>
                     <div class="card-body">
-                        <p class="card-text"> No urut : 1</p>
-                        <p class="card-text"> Nama Lengkap : xxx</p>
-                        <p class="card-text"> TTL : xxx</p>
-                        <p class="card-text"> Agama : xxx</p>
-                        <p class="card-text"> Alamat : xxx</p>
-                        <p class="card-text"> Pendidikan Terakhir : XXX </p>
-                        <p class="card-text">Visi-misi : XXX</p>
+                        <p class="card-text"> No urut : {{ $kandidat->id }}</p>
+                        <p class="card-text"> Nama Lengkap : {{$kandidat->nama}}</p>
+                        <p class="card-text"> TTL : {{$kandidat->tanggal_lahir}}</p>
+                        <p class="card-text"> Agama : {{$kandidat->agama}}</p>
+                        <p class="card-text"> Alamat :{{$kandidat -> alamat}}</p>
+                        <p class="card-text"> Pendidikan Terakhir : {{$kandidat -> pendidikan_terakhir}} </p>
+                        <p class="card-text">Visi : {{$kandidat->visi}}</p>
+                        <p class="card-text">Misi : {{$kandidat->misi}}</p>
+                        <p class="card-text">Email : {{$kandidat->email}}</p>
 
                     </div>
                 </div>
-
-
-
-                <div class="card border-primary" style="width: 18rem">
-                    <img src="{{asset('img/avatar.svg')}}" style="width: 65%;margin: 0 auto ; margin-top: 50px" class="card-img-top" alt="...">
-                    <hr>
-                    <div class="card-body">
-                        <p class="card-text"> No urut : 2</p>
-                        <p class="card-text"> Nama Lengkap : xxx</p>
-                        <p class="card-text"> TTL : xxx</p>
-                        <p class="card-text"> Agama : xxx</p>
-                        <p class="card-text"> Alamat : xxx</p>
-                        <p class="card-text"> Pendidikan Terakhir : XXX </p>
-                        <p class="card-text">Visi-misi : XXX</p>
-
-                    </div>
-                </div>
-
+                @endforeach
             </div>
+
         <div style=" display: flex;
   align-items: center;
   justify-content: center;">

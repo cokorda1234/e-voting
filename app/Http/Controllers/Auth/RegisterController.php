@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\kandidat;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+
 
 class RegisterController extends Controller
 {
@@ -72,4 +75,30 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function registercan(Request $request){
+        $user = new User();
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+        $user->NIK = $request['NIK'];
+        $user->no_hp = $request['nope'];
+        $user->password = Hash::make($request['password']);
+        $kandidat = new kandidat();
+        $kandidat->nama = $request['name'];
+        $kandidat->tanggal_lahir = $request['tanggal_lahir'];
+        $kandidat->agama = $request['agama'];
+        $kandidat->alamat = $request['alamat'];
+        $kandidat->pendidikan_terakhir = $request['pendidikan'];
+        $kandidat->visi = $request['visi'];
+        $kandidat->misi = $request['misi'];
+        $kandidat->email = $request['email'];
+        $kandidat->save();
+        $user->save();
+
+        return redirect('/')->with('succes','regsiter berhasil');
+    }
+
+
+
+
 }

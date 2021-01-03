@@ -10,45 +10,28 @@
         <h1 align="center">Vote Kandidat</h1>
 
         <div style="display: flex;margin-top: 70px;justify-content: center">
+            @foreach($kandidat as $kandidat)
             <div class="card border-primary" style="width: 18rem ; margin-right: 50px">
                 <img src="{{asset('img/avatar.svg')}}" style="width: 65%;margin: 0 auto ; margin-top: 50px" class="card-img-top" alt="...">
                 <hr>
                 <div class="card-body">
-                    <p class="card-text"> No urut : 1</p>
-                    <p class="card-text"> Visi : xxx</p>
-                    <p class="card-text"> Misi : xxx</p>
+                    <p class="card-text"> No urut : {{$kandidat->id}}</p>
+                    <p class="card-text"> Nama : {{$kandidat->nama}}</p>
+                    <p class="card-text"> Visi : {{$kandidat->visi}}</p>
+                    <p class="card-text"> Misi : {{$kandidat->misi}}</p>
 
 
                 </div>
                 <div class="card-footer">
                     @if(count($test) == 0)
-                    <a href="votes/1/{{Auth::user()->id}}" class="btn btn-success" style="width: 100%">Vote</a>
+                    <a href="votes/{{$kandidat->id}}/{{Auth::user()->id}}" class="btn btn-success" style="width: 100%">Vote</a>
                     @else
                         <p>Anda sudah melakukan Voting</p>
                     @endif
                 </div>
             </div>
+            @endforeach
 
-
-
-            <div class="card border-primary" style="width: 18rem">
-                <img src="{{asset('img/avatar.svg')}}" style="width: 65%;margin: 0 auto ; margin-top: 50px" class="card-img-top" alt="...">
-                <hr>
-                <div class="card-body">
-                    <p class="card-text"> No urut : 2</p>
-                    <p class="card-text"> Visi : xxx</p>
-                    <p class="card-text"> Misi : xxx</p>
-
-
-                </div>
-                <div class="card-footer">
-                    @if(count($test) == 0)
-                        <a href="votes/2/{{Auth::user()->id}}" class="btn btn-success" style="width: 100%">Vote</a>
-                    @else
-                        <p>Anda sudah melakukan Voting</p>
-                    @endif
-                </div>
-            </div>
 
         </div>
     </div>
