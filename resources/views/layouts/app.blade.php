@@ -80,7 +80,7 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li> <a class="dropdown-item" href="{{ route('login') }}">Login as Voter</a> </li>
-                                            <li> <a class="dropdown-item" href="{{ route('login') }}">Login as Admin</a> </li>
+                                            <li> <a class="dropdown-item" href="/loginadmin">Login as Admin</a> </li>
                                             <li> <a class="dropdown-item" href="{{ route('login') }}">Login as Candidate</a> </li>
                                         </ul>
                                     </div>

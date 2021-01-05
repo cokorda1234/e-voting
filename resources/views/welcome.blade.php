@@ -6,6 +6,12 @@
 @endpush
 
 @section('content')
+    @if ($message = Session::get('gagal'))
+    <div class="alert alert-danger" role="alert">
+        Login gagal
+    </div>
+    @endif
+
     <div class="container" style="margin-top: 70px">
         <div class="row">
             <div class="col-sm">

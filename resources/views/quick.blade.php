@@ -8,19 +8,20 @@
         <h1 align="center">Quick count Kandidat</h1>
 
         <div style="display: flex;margin-top: 70px;justify-content: center">
-            @foreach($kandidat as $kandidat)
+            @foreach($kandidat as $s)
             <div class="card border-primary" style="width: 18rem ; margin-right: 50px">
                 <img src="{{asset('img/avatar.svg')}}" style="width: 65%;margin: 0 auto ; margin-top: 50px" class="card-img-top" alt="...">
                 <hr>
                 <div class="card-body">
-                    <p class="card-text"> No urut : {{$kandidat->id}}</p>
-                    <p class="card-text"> Nama : {{$kandidat->nama}}</p>
-                    <p class="card-text"> Visi : {{$kandidat->visi}}</p>
-                    <p class="card-text"> Misi : {{$kandidat->misi}}</p>
+                    <p class="card-text"> No urut : {{$s->id}}</p>
+                    <p class="card-text"> Nama : {{$s->nama}}</p>
+                    <p class="card-text"> Visi : {{$s->visi}}</p>
+                    <p class="card-text"> Misi : {{$s->misi}}</p>
 
                 </div>
                 <div class="card-footer">
-{{--                    <p> Hasil Suara {{count($satu)}}</p>--}}
+                    <p> Hasil Suara {{count($s->voteuser)}}</p>
+
                 </div>
             </div>
 
@@ -29,7 +30,7 @@
 
 
         </div>
-        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+        <div id="chartContainer" style="height: 300px; width: 100%; margin-top: 50px"></div>
 
     </div>
 
@@ -42,41 +43,51 @@
 
 
 @push('script')
-{{--    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>--}}
-{{--<script>--}}
-{{--    window.onload = function() {--}}
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script>
+    var accounts = [];
+    var hasil = [];
+    var i = 0;
 
-{{--        var cand1 = 0;--}}
-{{--        var cand2 = 0;--}}
+    @foreach($kandidat as $t)
+        accounts[i] = "{{$t->id}}. Total Suara : ";
+        hasil[i] = "{{count($t->voteuser)}}";
+    i++;
 
-{{--        @if(count($satu) != 0 )--}}
-{{--            cand1 = {{count($satu)}};--}}
-{{--        @endif--}}
-
-
-{{--            @if(count($dua) != 0 )--}}
-{{--            cand2 = {{count($dua)}};--}}
-{{--            @endif--}}
+        @endforeach
+        console.log(accounts.length);
 
 
-{{--        var chart = new CanvasJS.Chart("chartContainer", {--}}
-{{--            animationEnabled: true,--}}
-{{--            title: {--}}
-{{--                text: "Quick Count"--}}
-{{--            },--}}
-{{--            data: [{--}}
-{{--                type: "pie",--}}
-{{--                startAngle: 120,--}}
-{{--                indexLabel: "{label} {y}",--}}
-{{--                dataPoints: [--}}
-{{--                    {y: cand1, label: "Kandidat 1 : "},--}}
-{{--                    {y: cand2, label: "Kandidat 2 : "},--}}
 
-{{--                ]--}}
-{{--            }]--}}
-{{--        });--}}
-{{--        chart.render();--}}
 
-{{--    }--}}
-{{--</script>--}}
+    window.onload = function() {
+        var z = 0;
+
+var test = "{y: 1, label: `kandidat 1 : `},{y: 2, label: `kandidat 2 : `}";
+
+
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            title: {
+                text: "Quick Count"
+            },
+            data: [{
+                type: "pie",
+                startAngle: 120,
+                indexLabel: "{label} {y}",
+                dataPoints: [
+
+                            @for ($i = 0; $i < count($kandidat); $i++)
+                        {y: hasil[{{$i}}], label: "ID kandidat No : " + accounts[{{$i}}]} ,
+                    @endfor
+
+
+                ]
+            }]
+        });
+
+        chart.render();
+
+    }
+</script>
 @endpush

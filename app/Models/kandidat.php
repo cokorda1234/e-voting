@@ -11,5 +11,9 @@ class kandidat extends Model
     protected $table = 'kandidat';
     public $timestamps = false;
 
+    public function voteuser(){
+        return $this->belongsToMany('App\Models\User','vote','kandidat_id','user_id');
+    }
+
 
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\voteController;
+use App\Http\Controllers\adminController;
 use App\Http\Controllers\Auth\RegisterController;
 
 /*
@@ -35,6 +36,10 @@ Route::post('/registercanpost', [RegisterController::class,'registercan'])->name
 Route::get('/registercan' , function (){
    return view('auth.registercan');
 });
+Route::get('/loginadmin',[adminController::class,'login']);
+Route::post('/loginadmin',[adminController::class,'loginfunc']);
+Route::get('/admin/dashboard',[adminController::class,'dashboard']);
+
 
 Auth::routes();
 
