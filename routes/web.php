@@ -20,6 +20,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/homes', function () {
+    return view('homenews');
+});
 
 Route::get('/langkah', function () {
     return view('langkah');
