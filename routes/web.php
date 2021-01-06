@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\voteController;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,4 +49,16 @@ Route::get('/admin/dashboard',[adminController::class,'dashboard']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/profile/edit/{id}' , function (){
+ return view('edit');
+});
+Route::post('/profile/edit/{id}' , function ($id , Request $request){
+    $test = User::find($id);
+    $test->name = $request->name;
+    $test->email = $request->email;
+    $test->no_hp = $request->no_hp;
+    $test->NIK = $request->NIK;
+    $test->save();
+    return redirect('/profile');
+});
 
